@@ -1,0 +1,15 @@
+{
+  "criteria": {
+    "break_gold_block": {
+      "trigger": "minecraft:player_destroyed_block",
+      "conditions": {
+        "block": {
+          "blocks": ["minecraft:gold_block"]
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "lucky_block:on_break"
+  }
+}

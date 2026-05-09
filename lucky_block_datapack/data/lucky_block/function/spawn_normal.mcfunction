@@ -1,0 +1,5 @@
+# 生成普通宝可梦
+execute as @p at @s positioned ~ ~1 ~ run pokespawn random level=50
+
+# 生成成功消息
+tellraw @a[distance=..15] {"text":"✨ 幸运方块生成了一只野生宝可梦！","color":"gold","bold":true}
