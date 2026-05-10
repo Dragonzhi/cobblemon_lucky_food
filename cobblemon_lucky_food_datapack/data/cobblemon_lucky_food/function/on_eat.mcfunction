@@ -1,7 +1,7 @@
-# 幸运食物使用函数
+# 幸运食物食用函数
 
 # 立即重置进度（放在最前面）
-advancement revoke @s only lucky_block:use_lucky_block
+advancement revoke @s only cobblemon_lucky_food:eat_lucky_food
 
 # 1. 粒子效果
 execute as @s at @s run particle minecraft:happy_villager ~ ~1 ~ 0.5 0.5 0.5 0.1 50

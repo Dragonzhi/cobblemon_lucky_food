@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "lucky_block:tick"
+    "cobblemon_lucky_food:init"
   ]
 }

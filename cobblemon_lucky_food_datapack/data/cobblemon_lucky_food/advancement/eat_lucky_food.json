@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "use_lucky_block": {
+    "eat_lucky_food": {
       "trigger": "minecraft:consume_item",
       "conditions": {
         "player": {
@@ -16,6 +16,6 @@
     }
   },
   "rewards": {
-    "function": "lucky_block:on_use"
+    "function": "cobblemon_lucky_food:on_eat"
   }
 }
