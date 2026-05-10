@@ -2,7 +2,17 @@
   "criteria": {
     "use_lucky_block": {
       "trigger": "minecraft:consume_item",
-      "conditions": {}
+      "conditions": {
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "predicates": {
+                "custom_data": "{lucky_block:1b}"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "rewards": {
