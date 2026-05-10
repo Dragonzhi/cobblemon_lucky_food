@@ -1,20 +1,22 @@
 # 🎮 Cobblemon 幸运方块数据包
 
-> 基于 Cobblemon 模组的 Minecraft 数据包，添加可以生成随机宝可梦的幸运方块！
+> 基于 Cobblemon 模组的 Minecraft 数据包，右键使用幸运蛋生成随机宝可梦！
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-green)](https://minecraft.net)
 [![Cobblemon](https://img.shields.io/badge/Cobblemon-Latest-red)](https://cobblemon.com)
-[![Version](https://img.shields.io/badge/版本-1.0.0-blue)]()
+[![Version](https://img.shields.io/badge/版本 -1.0.4-blue)]()
 [![License](https://img.shields.io/badge/许可证-CC--BY--NC--4.0-lightgrey)]()
 
 ## ✨ 特性亮点
 
-- 🎲 **随机宝可梦** - 打破金块生成等级 50 的随机宝可梦
+- 🎲 **随机宝可梦** - 右键使用幸运蛋生成等级 50 的随机宝可梦
 - 🌟 **闪光系统** - 10% 几率生成闪光宝可梦
 - 🎆 **华丽特效** - 粒子效果和声音效果
 - 📝 **精美消息** - 彩色聊天提示
 - ⚡ **即插即用** - 无需配置，安装即用
 - 🔧 **易于自定义** - 所有参数可轻松调整
+- ✅ **不修改原版** - 使用物品触发，不影响方块
+- 🥚 **简单直观** - 右键使用即可
 
 ## 🚀 快速开始
 
@@ -29,24 +31,22 @@
 在游戏中输入：/reload
 ```
 
-### 3. 获得幸运方块
+### 3. 获得幸运蛋
 ```
 /function lucky_block:give_lucky_block
 ```
 
 ### 4. 玩耍！
-放置金块 → 打破它 → 享受惊喜！✨
+手持幸运蛋 → 右键使用 → 享受惊喜！✨
 
 ## 📖 文档
 
 | 文档 | 说明 |
 |------|------|
-| [快速开始.md](快速开始.md) | 3 分钟安装指南 |
+| [快速指南.md](快速指南.md) | 3 分钟快速开始 |
+| [关键修复说明.md](关键修复说明.md) - **重要** | consumable 组件说明 |
+| [物品触发版说明.md](物品触发版说明.md) | 物品触发方案详情 |
 | [使用说明.md](使用说明.md) | 详细使用文档 |
-| [测试指南.md](测试指南.md) | 测试步骤和检查清单 |
-| [文件结构.md](文件结构.md) | 可视化文件结构 |
-| [项目总结.md](项目总结.md) | 技术总结 |
-| [🎉完成汇总.md](🎉完成汇总.md) | 完成汇总 |
 
 ## 🎯 核心功能
 
@@ -76,71 +76,39 @@ execute as @p at @s positioned ~ ~1 ~ run pokespawn random level=100
 ```
 
 ### 修改闪光几率
-编辑 `data/lucky_block/function/on_break.mcfunction`:
+编辑 `data/lucky_block/function/on_use.mcfunction`:
 ```mcfunction
 # 0 9 = 10%, 0 19 = 5%, 0 4 = 20%
 scoreboard players random lucky_shiny 0 19
 ```
 
 ### 修改粒子效果
-编辑 `data/lucky_block/function/on_break.mcfunction`:
+编辑 `data/lucky_block/function/on_use.mcfunction`:
 ```mcfunction
 # 使用不同的粒子
 particle minecraft:dragon_breath ~ ~1 ~ 0.5 0.5 0.5 0.1 50
 ```
 
-## 📦 文件结构
-
-```
-方块宝可梦幸运方块/
-├── lucky_block_datapack/       # 数据包主文件夹
-│   ├── pack.mcmeta             # 数据包元数据
-│   ├── README.md               # 英文说明
-│   └── data/
-│       ├── lucky_block/
-│       │   ├── advancement/
-│       │   │   └── break_lucky_block.json
-│       │   ├── function/
-│       │   │   ├── init.mcfunction
-│       │   │   ├── tick.mcfunction
-│       │   │   ├── on_break.mcfunction
-│       │   │   ├── spawn_normal.mcfunction
-│       │   │   ├── spawn_shiny.mcfunction
-│       │   │   └── give_lucky_block.mcfunction
-│       │   └── tags/
-│       └── minecraft/
-│           └── tags/
-│               └── function/
-│                   ├── load.json
-│                   └── tick.json
-├── 快速开始.md
-├── 使用说明.md
-├── 测试指南.md
-├── 文件结构.md
-├── 项目总结.md
-├── 文件清单.md
-└── 🎉完成汇总.md
-```
-
 ## 🔧 技术细节
 
-### 工作原理
-1. **进度检测** - 使用 Minecraft 原生进度系统检测金块破坏
-2. **函数调用** - 触发 `on_break` 函数
-3. **效果播放** - 生成粒子和声音效果
-4. **随机判定** - 使用计分板随机数决定闪光 (10%)
-5. **宝可梦生成** - 调用 Cobblemon 的 `/pokespawn` 命令
+### 实现原理
+1. **consumable 组件** - 使物品可以被右键使用（关键！）
+2. **自定义数据** - 幸运蛋带有 `custom_data:{lucky_block:1b}` 标记
+3. **使用检测** - 检测玩家使用带有标记的鸡蛋
+4. **Tick 重置** - 每 tick 重置进度以允许重复使用
+5. **函数执行** - 触发粒子、声音和宝可梦生成
+6. **物品消耗** - 使用后自动消耗幸运蛋
+
+### 重要特性
+- ✅ **只影响幸运蛋** - 普通鸡蛋不会触发
+- ✅ **不修改原版** - 不使用战利品表覆盖
+- ✅ **简单可靠** - 右键使用即可
+- ✅ **可重复使用** - tick 函数自动重置进度
 
 ### 系统要求
 - ✅ Minecraft Java Edition 1.21.1
 - ✅ Cobblemon 模组 (最新版本)
 - ✅ Fabric 或 NeoForge 加载器
-
-### 性能优化
-- 使用原生进度系统，性能开销最小
-- 粒子数量控制在合理范围 (50-100 个)
-- 声音范围限制在 15 格以内
-- 计分板使用后立即重置
 
 ## 🐛 故障排除
 
@@ -159,13 +127,17 @@ A: 检查以下几点:
 A: 确保:
    1. Cobblemon 模组已正确安装
    2. /pokespawn random level=50 命令可用
-   3. 周围有足够空间生成宝可梦
+   3. 使用的是幸运方块道具（金色名称），不是普通鸡蛋
+   4. 右键使用，不是左键投掷
 ```
 
-**Q: 所有金块都触发效果？**
+**Q: 如何区分幸运蛋和普通鸡蛋？**
 ```
-A: 这是当前版本的特性。
-   建议只使用 /function lucky_block:give_lucky_block 获得的金块。
+A: 幸运蛋有:
+   - 金色名称 "幸运方块"
+   - 描述性 Lore
+   - 只能通过 /function lucky_block:give_lucky_block 获得
+   普通鸡蛋不会触发任何效果
 ```
 
 ## 📊 项目统计
@@ -173,32 +145,10 @@ A: 这是当前版本的特性。
 | 项目 | 数值 |
 |------|------|
 | 代码文件 | 10 个 |
-| 文档文件 | 6 个 |
-| 总大小 | ~55 KB |
-| 开发时间 | ~1 小时 |
-| 版本 | 1.0.0 |
+| 文档文件 | 10 个 |
+| 总大小 | ~75 KB |
+| 版本 | 1.0.4 |
 | 创建日期 | 2026-05-09 |
-
-## 🎁 扩展建议
-
-想自己扩展数据包？试试这些想法：
-
-1. **多种幸运方块**
-   - 金块 = 等级 50
-   - 钻石块 = 等级 75
-   - 绿宝石块 = 等级 100
-
-2. **群系相关生成**
-   - 森林 = 草系宝可梦
-   - 海洋 = 水系宝可梦
-   - 洞穴 = 地面系宝可梦
-
-3. **统计系统**
-   - 记录打破的幸运方块数量
-   - 记录生成的闪光宝可梦数量
-
-4. **团队支持**
-   - 生成的宝可梦属于打破者
 
 ## 📄 许可证
 
@@ -228,8 +178,9 @@ A: 这是当前版本的特性。
 ```
 1. 安装数据包
 2. /function lucky_block:give_lucky_block
-3. 放置并打破金块
-4. 享受惊喜！✨
+3. 手持幸运蛋（金色名称）
+4. 右键使用
+5. 享受惊喜！✨
 ```
 
 **祝你游戏愉快！🎮✨🐾**
@@ -237,5 +188,5 @@ A: 这是当前版本的特性。
 ---
 
 *最后更新：2026-05-09*  
-*版本：1.0.0*  
+*版本：1.0.4 - consumable 修复版*  
 *状态：✅ 完成并可用*
