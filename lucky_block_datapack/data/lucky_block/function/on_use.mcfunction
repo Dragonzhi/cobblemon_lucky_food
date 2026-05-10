@@ -1,4 +1,4 @@
-# 幸运方块使用函数
+# 幸运食物使用函数
 
 # 立即重置进度（放在最前面）
 advancement revoke @s only lucky_block:use_lucky_block
@@ -13,4 +13,4 @@ execute as @s at @s run playsound minecraft:entity.experience_orb.pickup master 
 execute as @s at @s run pokespawn random level=50
 
 # 4. 消息
-tellraw @a[distance=..15] {"text":"✨ 幸运方块生成了一只野生宝可梦！","color":"gold","bold":true}
+tellraw @a[distance=..15] {"text":"✨ 幸运食物生成了一只野生宝可梦！","color":"gold","bold":true}
