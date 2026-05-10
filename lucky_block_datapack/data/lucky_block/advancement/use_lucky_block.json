@@ -1,12 +1,8 @@
 {
   "criteria": {
     "use_lucky_block": {
-      "trigger": "minecraft:using_item",
-      "conditions": {
-        "item": {
-          "items": ["minecraft:snowball"]
-        }
-      }
+      "trigger": "minecraft:consume_item",
+      "conditions": {}
     }
   },
   "rewards": {

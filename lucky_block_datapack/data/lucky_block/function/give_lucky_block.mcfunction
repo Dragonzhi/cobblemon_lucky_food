@@ -1,5 +1,5 @@
-# 给予玩家幸运方块
+# 给予玩家幸运方块 - 使用弓
 
-give @p snowball[minecraft:custom_data={lucky_block:1b}] 1
+give @p bow[minecraft:custom_data={lucky_block:1b}] 1
 
-tellraw @p {"text":"[幸运方块] 获得雪球! 右键使用!","color":"green"}
+tellraw @p {"text":"[幸运方块] 获得幸运方块！拉弓发射！","color":"green"}

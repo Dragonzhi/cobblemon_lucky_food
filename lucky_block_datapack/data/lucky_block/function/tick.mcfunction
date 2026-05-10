@@ -1,4 +1,4 @@
 # 每 tick 执行的函数
+# 检测玩家是否完成了进度，如果是则重置它
 
-# 使用进度检测，无需额外代码
-# 进度会在 on_use 函数执行后自动重置
+execute as @a[scores={lucky_block_progress=1}] run function lucky_block:reset_progress
