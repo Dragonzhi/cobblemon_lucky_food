@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "eat_weighted_lucky_food": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "predicates": {
+                "custom_data": "{weighted_lucky:1b}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "cobblemon_lucky_food:on_eat_weighted"
+  }
+}
