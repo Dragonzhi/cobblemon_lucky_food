@@ -1,0 +1,108 @@
+# 生成闪光传说/幻之宝可梦 (10% 几率)
+execute store result score #legendary_pick cobblemon_lucky_food run random value 0..93
+
+# 传说宝可梦闪光 (0-70)
+execute if score #legendary_pick cobblemon_lucky_food matches 0 run pokespawn articuno level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 1 run pokespawn zapdos level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 2 run pokespawn moltres level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 3 run pokespawn mewtwo level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 4 run pokespawn raikou level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 5 run pokespawn entei level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 6 run pokespawn suicune level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 7 run pokespawn lugia level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 8 run pokespawn ho-oh level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 9 run pokespawn regirock level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 10 run pokespawn regice level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 11 run pokespawn registeel level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 12 run pokespawn latias level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 13 run pokespawn latios level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 14 run pokespawn kyogre level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 15 run pokespawn groudon level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 16 run pokespawn rayquaza level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 17 run pokespawn uxie level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 18 run pokespawn mesprit level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 19 run pokespawn azelf level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 20 run pokespawn dialga level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 21 run pokespawn palkia level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 22 run pokespawn heatran level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 23 run pokespawn regigigas level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 24 run pokespawn giratina level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 25 run pokespawn cresselia level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 26 run pokespawn cobalion level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 27 run pokespawn terrakion level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 28 run pokespawn virizion level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 29 run pokespawn tornadus level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 30 run pokespawn thundurus level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 31 run pokespawn reshiram level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 32 run pokespawn zekrom level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 33 run pokespawn landorus level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 34 run pokespawn kyurem level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 35 run pokespawn xerneas level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 36 run pokespawn yveltal level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 37 run pokespawn zygarde level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 38 run pokespawn type-null level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 39 run pokespawn silvally level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 40 run pokespawn tapu-koko level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 41 run pokespawn tapu-lele level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 42 run pokespawn tapu-bulu level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 43 run pokespawn tapu-fini level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 44 run pokespawn cosmog level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 45 run pokespawn cosmoem level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 46 run pokespawn solgaleo level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 47 run pokespawn lunala level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 48 run pokespawn necrozma level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 49 run pokespawn zacian level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 50 run pokespawn zamazenta level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 51 run pokespawn eternatus level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 52 run pokespawn kubfu level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 53 run pokespawn urshifu level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 54 run pokespawn regieleki level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 55 run pokespawn regidrago level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 56 run pokespawn glastrier level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 57 run pokespawn spectrier level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 58 run pokespawn calyrex level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 59 run pokespawn enamorus level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 60 run pokespawn wo-chien level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 61 run pokespawn chien-pao level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 62 run pokespawn ting-lu level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 63 run pokespawn chi-yu level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 64 run pokespawn koraidon level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 65 run pokespawn miraidon level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 66 run pokespawn okidogi level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 67 run pokespawn munkidori level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 68 run pokespawn fezandipiti level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 69 run pokespawn ogerpon level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 70 run pokespawn terapagos level=50 shiny
+
+# 幻之宝可梦闪光 (71-93)
+execute if score #legendary_pick cobblemon_lucky_food matches 71 run pokespawn mew level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 72 run pokespawn celebi level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 73 run pokespawn jirachi level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 74 run pokespawn deoxys level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 75 run pokespawn phione level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 76 run pokespawn manaphy level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 77 run pokespawn darkrai level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 78 run pokespawn shaymin level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 79 run pokespawn arceus level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 80 run pokespawn victini level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 81 run pokespawn keldeo level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 82 run pokespawn meloetta level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 83 run pokespawn genesect level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 84 run pokespawn diancie level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 85 run pokespawn hoopa level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 86 run pokespawn volcanion level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 87 run pokespawn magearna level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 88 run pokespawn marshadow level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 89 run pokespawn zeraora level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 90 run pokespawn meltan level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 91 run pokespawn melmetal level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 92 run pokespawn zarude level=50 shiny
+execute if score #legendary_pick cobblemon_lucky_food matches 93 run pokespawn pecharunt level=50 shiny
+
+# 生成成功消息 (闪光版本)
+tellraw @a[distance=..15] [{"text":"??? ","color":"light_purple"},{"text":"传说幸运食物召唤了一只","color":"gold"},{"text":"闪光","color":"light_purple","bold":true},{"text":"传说/幻之宝可梦！","color":"gold"}]
+
+# 额外的闪光特效
+execute as @s at @s run particle minecraft:glow ~ ~2 ~ 1 1 1 0.1 100
+execute as @s at @s run particle minecraft:dragon_breath ~ ~2 ~ 1 1 1 0.1 50
+execute as @s at @s run playsound minecraft:entity.ender_dragon.grow master @a ~ ~ ~ 1 0.5
