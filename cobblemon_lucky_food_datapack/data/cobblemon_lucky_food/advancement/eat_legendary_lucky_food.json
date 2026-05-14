@@ -3,13 +3,9 @@
     "eat_legendary_lucky_food": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "player": {
-          "equipment": {
-            "mainhand": {
-              "predicates": {
-                "custom_data": "{legendary_lucky:1b}"
-              }
-            }
+        "item": {
+          "predicates": {
+            "minecraft:custom_data": "{legendary_lucky:1b}"
           }
         }
       }

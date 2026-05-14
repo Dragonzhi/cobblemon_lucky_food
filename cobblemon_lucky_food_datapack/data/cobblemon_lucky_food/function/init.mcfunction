@@ -111,3 +111,4 @@ scoreboard objectives add lucky_sp_93 dummy
 
 # 显示加载提示信息
 tellraw @a [{"text":"[幸运食物] ","color":"green","bold":true},{"text":"数据包已加载! 使用 /function cobblemon_lucky_food:give_lucky_food 获得幸运食物!","color":"white"}]
+tellraw @a [{"text":"[幸运食物] ","color":"green"},{"text":"诊断: /function cobblemon_lucky_food:debug_lucky_food  |  重置: /function cobblemon_lucky_food:reset_all_lucky_food","color":"gray"}]
