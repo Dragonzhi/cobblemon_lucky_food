@@ -107,9 +107,8 @@ execute if score #count cobblemon_lucky_food matches 0 run return 0
 # 4. 如果已生成过 (count > 0), 增加重试
 execute if score #count cobblemon_lucky_food matches 1.. run scoreboard players add @s lucky_retry 1
 
-# 4a. 重试超过500次 → 强制生成并终止
-execute if score #count cobblemon_lucky_food matches 1.. if score @s lucky_retry matches 500.. run function cobblemon_lucky_food:spawn_legendary_weighted_do
-execute if score #count cobblemon_lucky_food matches 1.. if score @s lucky_retry matches 500.. run return 0
+# 4a. 重试超过10次 → 改用顺序扫描保底 (防止递归过深, 剩最后几只时保证命中)
+execute if score #count cobblemon_lucky_food matches 1.. if score @s lucky_retry matches 10.. run function cobblemon_lucky_food:spawn_legendary_weighted_scan
 
-# 4b. 正常重试 (重试1-499次) — 递归调用, 返回后函数自然结束
-execute if score #count cobblemon_lucky_food matches 1.. if score @s lucky_retry matches 1..499 run function cobblemon_lucky_food:spawn_legendary_weighted
+# 4b. 正常重试 (重试1-9次) — 递归调用, 返回后函数自然结束
+execute if score #count cobblemon_lucky_food matches 1.. if score @s lucky_retry matches 1..9 run function cobblemon_lucky_food:spawn_legendary_weighted

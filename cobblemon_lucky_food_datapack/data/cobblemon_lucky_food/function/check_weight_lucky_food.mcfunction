@@ -306,7 +306,8 @@ tellraw @s [{"text":"剩余: ","color":"white"},{"score":{"name":"#remaining","o
 tellraw @s [{"text":"总生成次数: ","color":"white"},{"score":{"name":"#total","objective":"cobblemon_lucky_food"},"color":"green","bold":true},{"text":" (含重复)","color":"gray"}]
 
 execute if score #remaining cobblemon_lucky_food matches 1.. run tellraw @s [{"text":"提示: 还可以生成 ","color":"gray"},{"score":{"name":"#remaining","objective":"cobblemon_lucky_food"},"color":"green"},{"text":" 只新宝可梦","color":"gray"}]
-execute if score #remaining cobblemon_lucky_food matches 0 run tellraw @s [{"text":"提示: 全部94只已解锁! 继续吃会随机重复","color":"yellow"}]
+execute if score #remaining cobblemon_lucky_food matches 0 run tellraw @s [{"text":"提示: 全部94只已解锁! 继续吃不会生成, 运行以下命令重置:","color":"yellow"}]
+execute if score #remaining cobblemon_lucky_food matches 0 run tellraw @s [{"text":"  /function cobblemon_lucky_food:reset_weight_lucky_food","color":"green"}]
 
 tellraw @s [{"text":"=== 结束 ===","color":"gold","bold":true}]
 
