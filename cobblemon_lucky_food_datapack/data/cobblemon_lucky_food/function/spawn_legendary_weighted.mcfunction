@@ -1,5 +1,5 @@
-# 权重选取+生成
-# 每只宝可梦有独立的生成计数，越多次出现概率越低
+# 权重选取+生成 (简化版: 已生成过的宝可梦不再出现)
+# 靠重试机制跳过已生成的宝可梦
 
 # 1. 随机选取 0..93
 execute store result score #pick cobblemon_lucky_food run random value 0..93
@@ -100,37 +100,16 @@ execute if score #pick cobblemon_lucky_food matches 91 run scoreboard players op
 execute if score #pick cobblemon_lucky_food matches 92 run scoreboard players operation #count cobblemon_lucky_food = @s lucky_sp_92
 execute if score #pick cobblemon_lucky_food matches 93 run scoreboard players operation #count cobblemon_lucky_food = @s lucky_sp_93
 
-# 3. 根据计数设定通过阈值 (0-99)
-# count=0: 阈值99 → roll 0..99 (0-99通过) → 100%通过
-# count=1: 阈值49 → roll 0..99 (0-49通过) → ~50%
-# count=2: 阈值66 → ~33%
-# count=3: 阈值79 → ~20%
-# count=4: 阈值83 → ~16%
-# count=5: 阈值90 → ~10%
-# count 6-10: 阈值90 → ~10%
-# count 11-20: 阈值80 → ~20% (还原一点)
-# count 21-30: 阈值70 → ~30%
-# count 31+: 阈值50 → ~50% (不再降低)
-execute if score #count cobblemon_lucky_food matches 0 run scoreboard players set #threshold cobblemon_lucky_food 99
-execute if score #count cobblemon_lucky_food matches 1 run scoreboard players set #threshold cobblemon_lucky_food 49
-execute if score #count cobblemon_lucky_food matches 2 run scoreboard players set #threshold cobblemon_lucky_food 66
-execute if score #count cobblemon_lucky_food matches 3 run scoreboard players set #threshold cobblemon_lucky_food 79
-execute if score #count cobblemon_lucky_food matches 4 run scoreboard players set #threshold cobblemon_lucky_food 83
-execute if score #count cobblemon_lucky_food matches 5 run scoreboard players set #threshold cobblemon_lucky_food 90
-execute if score #count cobblemon_lucky_food matches 6..10 run scoreboard players set #threshold cobblemon_lucky_food 90
-execute if score #count cobblemon_lucky_food matches 11..20 run scoreboard players set #threshold cobblemon_lucky_food 80
-execute if score #count cobblemon_lucky_food matches 21..30 run scoreboard players set #threshold cobblemon_lucky_food 70
-execute if score #count cobblemon_lucky_food matches 31.. run scoreboard players set #threshold cobblemon_lucky_food 50
+# 3. 如果 count = 0 (未生成过), 直接生成并终止此函数 (防止递归返回后被重复触发)
+execute if score #count cobblemon_lucky_food matches 0 run function cobblemon_lucky_food:spawn_legendary_weighted_do
+execute if score #count cobblemon_lucky_food matches 0 run return 0
 
-# 4. 掷骰 (0-99)
-execute store result score #roll cobblemon_lucky_food run random value 0..99
+# 4. 如果已生成过 (count > 0), 增加重试
+execute if score #count cobblemon_lucky_food matches 1.. run scoreboard players add @s lucky_retry 1
 
-# 5. 通过 → 生成并计数递增
-execute if score #roll cobblemon_lucky_food <= #threshold cobblemon_lucky_food run function cobblemon_lucky_food:spawn_legendary_weighted_do
+# 4a. 重试超过500次 → 强制生成并终止
+execute if score #count cobblemon_lucky_food matches 1.. if score @s lucky_retry matches 500.. run function cobblemon_lucky_food:spawn_legendary_weighted_do
+execute if score #count cobblemon_lucky_food matches 1.. if score @s lucky_retry matches 500.. run return 0
 
-# 6. 未通过 + 重试未达上限 → 递归重试
-execute if score #roll cobblemon_lucky_food > #threshold cobblemon_lucky_food run scoreboard players add @s lucky_retry 1
-execute if score #roll cobblemon_lucky_food > #threshold cobblemon_lucky_food if score @s lucky_retry matches 0..9 run function cobblemon_lucky_food:spawn_legendary_weighted
-
-# 7. 未通过 + 重试达上限 → 强制生成
-execute if score #roll cobblemon_lucky_food > #threshold cobblemon_lucky_food if score @s lucky_retry matches 10.. run function cobblemon_lucky_food:spawn_legendary_weighted_do
+# 4b. 正常重试 (重试1-499次) — 递归调用, 返回后函数自然结束
+execute if score #count cobblemon_lucky_food matches 1.. if score @s lucky_retry matches 1..499 run function cobblemon_lucky_food:spawn_legendary_weighted

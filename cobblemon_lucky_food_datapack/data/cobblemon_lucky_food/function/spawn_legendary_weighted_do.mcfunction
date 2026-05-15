@@ -288,8 +288,8 @@ execute if score #pick cobblemon_lucky_food matches 93 run scoreboard players ad
 scoreboard players set @s lucky_retry 0
 
 # 生成消息
-execute if score @s lucky_shiny_flag matches 0 run tellraw @a[distance=..15] [{"text":"✨ ","color":"green"},{"text":"权重幸运食物召唤了一只","color":"gold"},{"text":"传说/幻之宝可梦","color":"green","bold":true},{"text":"！（权重已降低）","color":"gold"}]
-execute if score @s lucky_shiny_flag matches 1 run tellraw @a[distance=..15] [{"text":"✨ ","color":"green"},{"text":"权重幸运食物召唤了一只","color":"gold"},{"text":"闪光","color":"light_purple","bold":true},{"text":"传说/幻之宝可梦！","color":"gold"}]
+execute if score @s lucky_shiny_flag matches 0 run tellraw @a[distance=..15] [{"text":"✨ ","color":"green"},{"text":"全图鉴幸运食物召唤了一只","color":"gold"},{"text":"传说/幻之宝可梦","color":"green","bold":true},{"text":"！（不重复）","color":"gold"}]
+execute if score @s lucky_shiny_flag matches 1 run tellraw @a[distance=..15] [{"text":"✨ ","color":"green"},{"text":"全图鉴幸运食物召唤了一只","color":"gold"},{"text":"闪光","color":"light_purple","bold":true},{"text":"传说/幻之宝可梦！（不重复）","color":"gold"}]
 
 # 闪光特效
 execute if score @s lucky_shiny_flag matches 1 run execute as @s at @s run particle minecraft:glow ~ ~2 ~ 1 1 1 0.1 100

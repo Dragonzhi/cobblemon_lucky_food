@@ -1,7 +1,7 @@
 # 强制生成权重宝可梦 (测试用，绕过进度检测)
 # 运行: /function cobblemon_lucky_food:force_spawn_weighted
 
-tellraw @s [{"text":"[测试] 正在强制生成权重传说宝可梦...","color":"gray"}]
+tellraw @s [{"text":"[测试] 正在强制生成全图鉴传说宝可梦...","color":"gray"}]
 
 scoreboard players set @s lucky_shiny_flag 0
 function cobblemon_lucky_food:spawn_legendary_weighted

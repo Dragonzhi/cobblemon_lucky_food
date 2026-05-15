@@ -97,4 +97,4 @@ scoreboard players set @s lucky_sp_91 0
 scoreboard players set @s lucky_sp_92 0
 scoreboard players set @s lucky_sp_93 0
 
-tellraw @s [{"text":"[权重] 已重置所有权重计数，所有宝可梦通过率恢复至100%","color":"green"}]
+tellraw @s [{"text":"[全图鉴] 已重置所有94只宝可梦的生成记录，全部可重新解锁","color":"green"}]

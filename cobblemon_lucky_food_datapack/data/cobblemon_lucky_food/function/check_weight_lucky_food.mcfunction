@@ -290,24 +290,26 @@ execute if score @s lucky_sp_93 matches 1.. run scoreboard players add #unlocked
 scoreboard players operation #total cobblemon_lucky_food += @s lucky_sp_93
 execute if score @s lucky_sp_93 > #max cobblemon_lucky_food run scoreboard players operation #max cobblemon_lucky_food = @s lucky_sp_93
 
+# 计算还剩下多少只未解锁
+scoreboard players operation #remaining cobblemon_lucky_food = #max cobblemon_lucky_food
+scoreboard players set #94 cobblemon_lucky_food 94
+scoreboard players operation #remaining cobblemon_lucky_food = #94 cobblemon_lucky_food
+scoreboard players operation #remaining cobblemon_lucky_food -= #unlocked cobblemon_lucky_food
+
 # 输出报告
+tellraw @s [{"text":"=== 全图鉴状态报告 ===","color":"gold","bold":true}]
 
-tellraw @s [{"text":"\n=== 权重状态报告 ===\n","color":"gold","bold":true}]
+tellraw @s [{"text":"已解锁: ","color":"white"},{"score":{"name":"#unlocked","objective":"cobblemon_lucky_food"},"color":"green","bold":true},{"text":" / 94","color":"gold"}]
 
-tellraw @s [{"text":"> 总生成次数: ","color":"white"},{"score":{"name":"#total","objective":"cobblemon_lucky_food"},"color":"green","bold":true}]
+tellraw @s [{"text":"剩余: ","color":"white"},{"score":{"name":"#remaining","objective":"cobblemon_lucky_food"},"color":"green","bold":true},{"text":" 只未解锁","color":"gray"}]
 
-tellraw @s [{"text":"> 已解锁宝可梦: ","color":"white"},{"score":{"name":"#unlocked","objective":"cobblemon_lucky_food"},"color":"green","bold":true},{"text":" / 94","color":"gold"}]
+tellraw @s [{"text":"总生成次数: ","color":"white"},{"score":{"name":"#total","objective":"cobblemon_lucky_food"},"color":"green","bold":true},{"text":" (含重复)","color":"gray"}]
 
-tellraw @s [{"text":"> 最高通过率: ","color":"white"},{"text":"100%","color":"green","bold":true},{"text":" (未生成过的)","color":"gray"}]
+execute if score #remaining cobblemon_lucky_food matches 1.. run tellraw @s [{"text":"提示: 还可以生成 ","color":"gray"},{"score":{"name":"#remaining","objective":"cobblemon_lucky_food"},"color":"green"},{"text":" 只新宝可梦","color":"gray"}]
+execute if score #remaining cobblemon_lucky_food matches 0 run tellraw @s [{"text":"提示: 全部94只已解锁! 继续吃会随机重复","color":"yellow"}]
 
-execute if score #max cobblemon_lucky_food matches 0 run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"100%","color":"green","bold":true},{"text":" (尚未有任何重复)","color":"gray"}]
-execute if score #max cobblemon_lucky_food matches 1 run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"~50%","color":"yellow","bold":true}]
-execute if score #max cobblemon_lucky_food matches 2 run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"~33%","color":"yellow","bold":true}]
-execute if score #max cobblemon_lucky_food matches 3 run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"~20%","color":"yellow","bold":true}]
-execute if score #max cobblemon_lucky_food matches 4 run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"~16%","color":"yellow","bold":true}]
-execute if score #max cobblemon_lucky_food matches 5..10 run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"~10%","color":"red","bold":true}]
-execute if score #max cobblemon_lucky_food matches 11..20 run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"~20%","color":"yellow","bold":true}]
-execute if score #max cobblemon_lucky_food matches 21..30 run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"~30%","color":"yellow","bold":true}]
-execute if score #max cobblemon_lucky_food matches 31.. run tellraw @s [{"text":"> 最低通过率: ","color":"white"},{"text":"~50%","color":"yellow","bold":true}]
+tellraw @s [{"text":"=== 结束 ===","color":"gold","bold":true}]
 
-tellraw @s [{"text":"\n","color":"gold"}]
+# 清除临时变量
+scoreboard players reset #remaining cobblemon_lucky_food
+scoreboard players reset #94 cobblemon_lucky_food

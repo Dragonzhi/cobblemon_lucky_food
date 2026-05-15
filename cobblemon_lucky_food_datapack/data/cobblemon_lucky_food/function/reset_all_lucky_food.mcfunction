@@ -115,7 +115,7 @@ scoreboard players reset #temp_lf cobblemon_lucky_food
 tellraw @s [{"text":"\n=== \u2705 幸运食物全重置完成 ===\n","color":"green","bold":true}]
 tellraw @s [{"text":"\u2705 3个进度已撤销","color":"white"}]
 tellraw @s [{"text":"\u2705 计分板已重置","color":"white"}]
-tellraw @s [{"text":"\u2705 94只权重计数已清零","color":"white"}]
+tellraw @s [{"text":"\u2705 94只全图鉴计数已清零","color":"white"}]
 
 # 6. 后续建议
 tellraw @s [{"text":"\n\uD83D\uDC4D 现在可以重新使用以下命令:\n","color":"gold"}]
